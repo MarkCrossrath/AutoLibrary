@@ -1,0 +1,26 @@
+$isbn=$_GET["id"];
+$user=$_COOKIE['user'];
+$date=date("y-m-d");
+
+
+$sql = "INSERT INTO reservations ( ISBN,username,reservationDATE)
+VALUES ('$isbn', '$user','$date')";
+
+
+if ($conn->query($sql) === TRUE) {
+    echo "you have succesfully reserved the book";
+	?> <html> <a href="http://localhost/WEBD/assignment/loggedin.html">click here to return to the log in menu</a></html> <?php
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+
+
+
+$sql="SELECT author,bookTitle FROM books INNER JOIN reservations on books.ISBN=reservations.ISBN AND reservations.username like '%".$user."%'";
+
+
+//Reserved
+
+SELECT reserved_books.reserved_date AS reserved_date, books.* FROM reserved_books INNER JOIN books ON reserved_books.ISBN WHERE username = ?;
+
